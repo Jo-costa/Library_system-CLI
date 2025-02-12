@@ -1,15 +1,19 @@
 package org.fdc;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Library {
 
     private final ArrayList<Book>books;
     private final ArrayList<Member> members;
+    private final ArrayList<Librarian> staff;
 
     Library(){
         this.books = new ArrayList<>();
         this.members = new ArrayList<>();
+        this.staff = new ArrayList<>();
     }
 
     private void addBook(Book book){
@@ -79,12 +83,54 @@ public class Library {
             System.out.println("Already a member!");
         }
     }
-//
     public void librarianRemoveMember(Member member, Librarian librarian){
         if(members.contains(member)){
             librarian.removeMember(member, this);
         }else {
             System.out.println("Not found!");
+        }
+    }
+
+    public void loadBooks(){
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/books.csv"));
+            String line;
+
+            while((line = reader.readLine()) != null){
+                String[] lines = line.split(",");
+                String title =lines[0];
+                String author =lines[1];
+                String isbn =lines[2];
+                boolean isAvailable =Boolean.parseBoolean(lines[3]);
+
+                Book book = new Book(title, author, isbn, isAvailable);
+                books.add(book);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadLibrarians(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/librarians.csv"));
+
+            String line;
+
+            while((line = reader.readLine()) != null){
+                String[] lines = line.split(",");
+                String name = lines[0];
+                String id = lines[1];
+
+                Librarian librarian = new Librarian(name, id);
+                staff.add(librarian);
+
+            }
+
+            } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

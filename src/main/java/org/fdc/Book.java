@@ -9,11 +9,11 @@ public class Book {
     private String isbn;
     private boolean isAvailable;
 
-    Book(String tile, String author, String isbn){
+    Book(String tile, String author, String isbn, boolean isAvailable){
         this.title  = tile;
         this.author = author;
         this.isbn = isbn;
-        this.isAvailable = true;
+        this.isAvailable = isAvailable;
     }
 
     public String getTitle(){return title;}
@@ -58,5 +58,7 @@ public class Book {
     public int hashCode(){
         return Objects.hash(title, author, isbn);
     }
+
+
 
 }

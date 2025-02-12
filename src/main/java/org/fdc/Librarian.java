@@ -43,4 +43,9 @@ public class Librarian extends Person{
     public int hashCode(){
         return Objects.hash(getId(), getName());
     }
+
+    @Override
+    public String toString(){
+        return this.getName()+","+this.getId();
+    }
 }
