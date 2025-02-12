@@ -10,18 +10,22 @@ public class Librarian extends Person{
 
     public void addBook(Book book, Library library){
 
+        library.librarianAddBook(book, this);
     }
 
     public void removeBook(Book book, Library library){
 
+        library.librarianRemoveBook(book, this);
     }
 
     public void addMember(Member member, Library library){
 
+        library.librarianAddMember(member, this);
     }
 
     public void removeMember(Member member, Library library){
 
+        library.librarianRemoveMember(member, this);
     }
 
     @Override

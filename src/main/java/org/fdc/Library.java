@@ -7,21 +7,28 @@ public class Library {
     private final ArrayList<Book>books;
     private final ArrayList<Member> members;
 
-
     Library(){
         this.books = new ArrayList<>();
         this.members = new ArrayList<>();
     }
 
-
-
-    public void addBook(Book book){
+    private void addBook(Book book){
         if(books.contains(book)){
             System.out.println("Book already in the library!");
         }else {
             books.add(book);
         }
     }
+
+    private void removeBook(Book book){
+        if(books.contains(book)){
+            books.remove(book);
+        }else {
+            System.out.println("Not found!");
+        }
+    }
+
+
 
     public void addMember(Member member){
 
@@ -32,27 +39,52 @@ public class Library {
         }
     }
 
+    private void removeMember(Member member){
+        if(books.contains(member)){
+            books.remove(member);
+        }else {
+            System.out.println("Not found!");
+        }
+    }
+
+
     public ArrayList<Book> getBooks(){
         return books;
     }
 
-//    public Member getMembers(){
-//
-//    }
+    public ArrayList<Member> getMembers(){
+        return members;
+    }
 
-//   public void librarianAddBook(Book book, Librarian librarian){
+   public void librarianAddBook(Book book, Librarian librarian){
+
+        if(!books.contains(book)){
+            librarian.addBook(book, this);
+        }
+
+    }
+
+    public void librarianRemoveBook(Book book, Librarian librarian){
+
+        if(members.contains(book)){
+            librarian.removeBook(book, this);
+        }
+    }
+
+      public void librarianAddMember(Member member, Librarian librarian){
+
+        if(!members.contains(member)){
+            librarian.addMember(member, this);
+        }else {
+            System.out.println("Already a member!");
+        }
+    }
 //
-//    }
-//
-//       public void librarianRemoveBook(Book book, Librarian librarian){
-//
-//    }
-//
-//      public void librarianAddMember(Member member, Librarian librarian){
-//
-//    }
-//
-//    public void librarianRemoveMember(Member member, Librarian librarian){
-//
-//    }
+    public void librarianRemoveMember(Member member, Librarian librarian){
+        if(members.contains(member)){
+            librarian.removeMember(member, this);
+        }else {
+            System.out.println("Not found!");
+        }
+    }
 }
