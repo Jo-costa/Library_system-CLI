@@ -9,8 +9,8 @@ public class Book {
     private String isbn;
     private boolean isAvailable;
 
-    Book(String tile, String author, String isbn, boolean isAvailable){
-        this.title  = tile;
+    Book(String title, String author, String isbn, boolean isAvailable){
+        this.title  = title;
         this.author = author;
         this.isbn = isbn;
         this.isAvailable = isAvailable;

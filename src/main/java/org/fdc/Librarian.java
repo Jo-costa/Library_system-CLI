@@ -9,17 +9,14 @@ public class Librarian extends Person{
     }
 
     public void addBook(Book book, Library library){
-
-        library.librarianAddBook(book, this);
+        library.librarianAddBook(this, book);
     }
 
     public void removeBook(Book book, Library library){
-
-        library.librarianRemoveBook(book, this);
+        library.librarianRemoveBook(this, book);
     }
 
     public void addMember(Member member, Library library){
-
         library.librarianAddMember(member, this);
     }
 
