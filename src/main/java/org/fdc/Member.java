@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Member extends Person{
-    private ArrayList<Book> borrowedBooks;
+    private final ArrayList<Book> borrowedBooks;
 
     Member(String name, String id){
 
@@ -14,17 +14,21 @@ public class Member extends Person{
         this.borrowedBooks = new ArrayList<>();
     }
 
-//    public void borrowBook(Book book, Library library, Librarian librarian){
-//
-//        if(book.getAvailability()){
-//            book.setAvailability(false);
-//            borrowedBooks.add(book);
-//            //library.librarianRemoveBook()
-//        }
-//
-//    }
-    public void returnBook(Book book){}
-//    public ArrayList<Book> getBorrowedBooks(){}
+    public void borrowBook(Book book, Library library){
+
+         if( book != null && book.getAvailability()){
+             Book bookToBorrow = library.memberBorrowBook(this, book);
+             borrowedBooks.add(bookToBorrow);
+         } else if(book != null && !book.getAvailability()) {
+             System.out.println("Book not available!");
+         } else {
+             System.out.println("Book not found!");
+         }
+    }
+    public void returnBook(Book book, Library library){
+
+    }
+    public ArrayList<Book> getBorrowedBooks(){return borrowedBooks;}
 
 
     @Override
